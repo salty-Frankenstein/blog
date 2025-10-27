@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://salty-frankenstein.github.io/blog">
+  <link rel="dns-prefetch" href="https://salty-frankenstein.github.io">
   <title>【线段树】逆序对 | 地灵殿</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,7 +13,7 @@
   <meta name="description" content="求逆序对的线段树做法。对于每一个数，类似桶排序记录出现的次数，则那个数记入前大于它的数的次数和就是那个数的逆序对个数。于是只需线段树维护区间和即可。然而对于桶排序的数据范围太大了，因此离散化了一下，离散化后的数据入桶建树即可。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【线段树】逆序对">
-<meta property="og:url" content="https://salty-frankenstein.github.io/blog/2018/07/12/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%E3%80%91%E9%80%86%E5%BA%8F%E5%AF%B9/index.html">
+<meta property="og:url" content="https://salty-frankenstein.github.io/2018/07/12/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%E3%80%91%E9%80%86%E5%BA%8F%E5%AF%B9/index.html">
 <meta property="og:site_name" content="地灵殿">
 <meta property="og:description" content="求逆序对的线段树做法。对于每一个数，类似桶排序记录出现的次数，则那个数记入前大于它的数的次数和就是那个数的逆序对个数。于是只需线段树维护区间和即可。然而对于桶排序的数据范围太大了，因此离散化了一下，离散化后的数据入桶建树即可。">
 <meta property="og:locale">
@@ -97,10 +97,6 @@
 			
 				
 					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
 				
 			
 		</nav>
@@ -303,7 +299,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://salty-frankenstein.github.io/blog/blog/2018/07/12/【线段树】逆序对/" title="【线段树】逆序对" target="_blank">https://salty-frankenstein.github.io/blog/blog/2018/07/12/【线段树】逆序对/</a>
+          <a href="https://salty-frankenstein.github.io/blog/2018/07/12/【线段树】逆序对/" title="【线段树】逆序对" target="_blank">https://salty-frankenstein.github.io/blog/2018/07/12/【线段树】逆序对/</a>
         </li>
         
         <li>
@@ -396,7 +392,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://salty-frankenstein.github.io/blog/2018/07/12/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%E3%80%91%E9%80%86%E5%BA%8F%E5%AF%B9/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://salty-frankenstein.github.io/2018/07/12/%E3%80%90%E7%BA%BF%E6%AE%B5%E6%A0%91%E3%80%91%E9%80%86%E5%BA%8F%E5%AF%B9/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -468,6 +464,29 @@
 
 
 
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/blog/lib/gitment.css">
+    <script src="/blog/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "【线段树】逆序对" -->
+    var gitment = new Gitment({
+      id: "20180712165508",
+      owner: 'salty-Frankenstein',
+      repo: 'hello',
+      oauth: {
+        client_id: 'ca74e545c18af1f08506',
+        client_secret: '9a570b2cfc4599e085de72ce661e3b7c057f073d',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
 
@@ -478,7 +497,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2025 <a href="https://salty-frankenstein.github.io/blog/blog/" target="_blank">Frankenstein</a>
+    		&copy; 2018-2025 <a href="https://salty-frankenstein.github.io/blog/" target="_blank">Frankenstein</a>
     	</div>
       	<div class="footer-right">
 			
@@ -562,25 +581,17 @@
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章检索</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章检索</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
     </ul>
@@ -871,13 +882,6 @@
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-        
-          
-  	  		<div class="aboutme-wrap" id="aboutme">好了<br><br>还有什么人<br>要提问？</div>
-  	  	
-    	</section>
     
   </div>
   

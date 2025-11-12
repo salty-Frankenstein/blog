@@ -17,13 +17,21 @@
 <meta property="og:site_name" content="地灵殿">
 <meta property="og:description" content="最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过Haskell中ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/1.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/2.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/3.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/4.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/5.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/6.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/7.png">
 <meta property="article:published_time" content="2025-07-10T13:18:53.000Z">
-<meta property="article:modified_time" content="2025-11-09T17:21:07.413Z">
+<meta property="article:modified_time" content="2025-11-10T17:00:13.936Z">
 <meta property="article:author" content="Frankenstein">
 <meta property="article:tag" content="Haskell">
 <meta property="article:tag" content="函数式">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/1.png">
   
     <link rel="alternative" href="/blog/atom.xml" title="地灵殿" type="application/atom+xml">
   
@@ -264,7 +272,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.8k字</span>
+      <span class="post-count">4k字</span>
     </span>
   </span>
 
@@ -273,7 +281,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">11分</span>
+      <span class="post-count">15分</span>
     </span>
   </span>
 </div>
@@ -376,14 +384,14 @@
 </ul>
 <p>所以说，$F(X)=1+{\rm Int}\times X$是一个函子，可以自己验证一下.</p>
 </blockquote>
-<p>更一般地，对于其他的递归类型，我们也可以做类似的事情，把定义中递归的地方挖成一个空，这就对应着一个函子，而这个函子的不动点就是这个递归类型了.</p>
+<p>更一般地，对于其他的递归类型，我们也可以做类似的事情，把定义中递归的地方挖成一个空，这就对应着一个函子，而这个函子的不动点就是我们所说的递归类型了.</p>
 <blockquote>
 <p>等一下，你确定$F(X)=X\to {\rm Int}$也是函子吗？好吧，这个不行.</p>
 </blockquote>
-<h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>现在还有最后一个小细节，这里的类型之间的相等其实是刚刚提过的类型同构. 也就是说，当我们定义一个递归类型，其实我们想要的是：它对应的一个函子$F$，和一个具体的类型$X$，以及一对同构函数$X\to FX$和$FX\to X$. 例如，当我们在说整数列表类型的时候，其实我们想要的是：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个函子</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">IntList</span> a = <span class="type">Nil</span> | <span class="type">Cons</span> <span class="type">Int</span> a</span></span><br><span class="line"><span class="comment">-- 一个神秘的类型X</span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">X</span> = ...</span></span><br><span class="line"><span class="comment">-- 一对同构映射</span></span><br><span class="line"><span class="title">to</span> :: <span class="type">X</span> -&gt; <span class="type">IntList</span> <span class="type">X</span></span><br><span class="line"><span class="title">from</span> :: <span class="type">IntList</span> <span class="type">X</span> -&gt; <span class="type">X</span></span><br></pre></td></tr></table></figure>
+<h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>现在还有最后一个小细节，这里的类型之间的相等其实是刚刚提过的类型同构. 也就是说，当我们定义一个递归类型，其实我们想要的是：一个具体的类型$T$，它对于一个函子$F$，存在一对同构函数$T\to FT$和$FT\to T$. 例如，当我们在说整数列表类型的时候，其实我们想要的是：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个神秘的类型T</span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">T</span> = ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 它对于这个函子</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">IntList</span> a = <span class="type">Nil</span> | <span class="type">Cons</span> <span class="type">Int</span> a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">to</span> :: <span class="type">T</span> -&gt; <span class="type">IntList</span> <span class="type">T</span></span><br><span class="line"><span class="title">from</span> :: <span class="type">IntList</span> <span class="type">T</span> -&gt; <span class="type">T</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="X是什么呢？"><a href="#X是什么呢？" class="headerlink" title="X是什么呢？"></a>X是什么呢？</h2><p>那么X到底是啥呢？其实有个很聪明的答案：<code>forall a. (F a -&gt; a) -&gt; a</code>. 我们可以给出它们的完整定义了：</p>
+<h2 id="T是什么呢？"><a href="#T是什么呢？" class="headerlink" title="T是什么呢？"></a>T是什么呢？</h2><p>到底怎么找到这个T呢？其实有个很聪明的答案：<code>forall a. (F a -&gt; a) -&gt; a</code>. 我们可以给出它们的完整定义了：</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">IntList</span> a = <span class="type">Nil</span> | <span class="type">IntList</span> <span class="type">Int</span> a <span class="keyword">deriving</span> <span class="type">Functor</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">X</span> = forall a. (<span class="type">IntList</span> <span class="title">a</span> -&gt; <span class="title">a</span>) -&gt; a</span></span><br><span class="line"></span><br><span class="line"><span class="title">foldX</span> :: (<span class="type">IntList</span> a -&gt; a) -&gt; <span class="type">X</span> -&gt; a</span><br><span class="line"><span class="title">foldX</span> k t = t k</span><br><span class="line"></span><br><span class="line"><span class="title">to</span> :: <span class="type">X</span> -&gt; <span class="type">IntList</span> <span class="type">X</span></span><br><span class="line"><span class="title">to</span> = foldX (fmap from)</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> :: <span class="type">IntList</span> <span class="type">X</span> -&gt; <span class="type">X</span></span><br><span class="line"><span class="title">from</span> s k = k (fmap (foldX k) s)</span><br></pre></td></tr></table></figure>
 
 <p>太好了，我们成功发明了递归类型！等一下下……这是怎么来的？</p>
@@ -403,8 +411,8 @@
 </blockquote>
 </li>
 </ul>
-<p>我们把需要的这些数据打包成一个表示幺半群的类型，利用ADT的性质可以整理为：<br>$$<br>\forall m. m^{m\times m}\times m^1\simeq m^{m\times m + 1}\simeq m\times m+1\to m<br>$$<br>我们可以把左边$m\times m + 1$看做一个函子$F(X)=X\times X+1$应用在类型$m$上，这样一个幺半群可以定义为一个对$(F, F\ m \to m)$. 嗯，这看起来很自然.</p>
-<p>使用不同的函子，我们可以推广到别的代数结构. 对于一个函子$F$，和一个态射$F\ a\to a$，$(F, F\ a\to a)$称为一个F-代数，我们可以简单的把这个态射表示这个代数.</p>
+<p>我们把需要的这些数据打包成一个表示幺半群的类型，利用ADT的性质可以整理为：<br>$$<br>m^{m\times m}\times m^1\simeq m^{m\times m + 1}\simeq m\times m+1\to m<br>$$<br>我们可以把左边$m\times m + 1$看做一个函子$F(X)=X\times X+1$应用在类型$m$上，这样一个幺半群可以定义为一个对$(m, F\ m \to m)$. 嗯，这看起来很自然，左边$F\ m$是这个代数需要的一堆运算的打包，而右边这个$m$则表示这些个运算在$m$上是封闭的.</p>
+<p>使用不同的函子，我们可以推广到别的代数结构. 更一般的，对于任意一个（自）函子$F$，我们取一个对象$a$和一个态射$F\ a\to a$，这个二元组$(a, F\ a\to a)$称为一个F-代数. 下文中，我们可以简单的把这个态射$F\ a\to a$表示这个代数.</p>
 <blockquote>
 <p>是的你发现了，这个定义并没有包括幺半群需要满足的代数性质. </p>
 </blockquote>
@@ -413,23 +421,49 @@
 <li>设$f: F\ a \to a,\ g: F\ b\to b$为两个F-代数. 同态$m: a\to b$需要满足$m(f(F\ x))=g(F\ m(x))$.</li>
 </ul>
 <p>这对应着这张交换图：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">F a ---F m---&gt; F b</span><br><span class="line"> |              |</span><br><span class="line"> f              g</span><br><span class="line"> |              |</span><br><span class="line"> v              v</span><br><span class="line"> a ----- m ---&gt; b</span><br></pre></td></tr></table></figure>
-
+<p><img src="1.png" alt="1.png"></p>
 <blockquote>
 <p>函子$F$负责处理这个结构：通过把$m$提升为$F\ m$，原本$a\to b$的函数变成了$(a \times a + 1)\to (b \times b + 1)$的函数，这就是$f(x \times_A y)$是如何变成$f(x)\times_B f(y)$的.</p>
 </blockquote>
 <p>ok了，根据这个定义，如果态射$m:a\to b$满足这个交换图的话，我们称它是从F-代数$f$到$g$的同态. 更进一步可以发现，以F-代数作为对象，F-代数之间的同态作为态射的话，又可以构成一个范畴. 这就是F-代数范畴.</p>
-<h2 id="递归类型作为F-代数"><a href="#递归类型作为F-代数" class="headerlink" title="递归类型作为F-代数"></a>递归类型作为F-代数</h2><p>速速言归正传. 我们刚才提到递归类型对应着一个函子$F$，一个类型$X$以及一对同构$X\to F X$和$FX\to X$. 是的你发现了，这个$FX\to X$的函数就对应着一个F-代数！</p>
+<h2 id="递归类型作为F-代数"><a href="#递归类型作为F-代数" class="headerlink" title="递归类型作为F-代数"></a>递归类型作为F-代数</h2><p>速速言归正传. 我们刚才提到递归类型对应着一个函子$F$，一个类型$T$以及一对同构$T\to F T$和$FT\to T$. 是的你发现了，这个$FT\to T$的函数就对应着一个F-代数！</p>
 <blockquote>
-<p>嗯嗯你说得对，那$X\to FX$呢？好的，这个其实是<strong>F-余代数（F-coalgebra）</strong>. 我们之后再讨论.</p>
+<p>嗯嗯你说得对，那$T\to FT$呢？别急，我们很快就会讨论这另一个方向.</p>
 </blockquote>
-<h2 id="初始F-代数"><a href="#初始F-代数" class="headerlink" title="初始F-代数"></a>初始F-代数</h2><p>在一个范畴中，如果其中的一个对象到这个范畴中的任意对象都有态射，则称它为<strong>弱初始对象（weak initial object）</strong>，而如果这些态射都唯一，则它是<strong>初始对象（initial object）</strong>.</p>
+<p>好吧，这并没有什么，我们有很多很多这样的函数. 例如对于<code>IntList</code>来说，我们取<code>()</code>类型：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">foo</span> :: <span class="type">IntList</span> () -&gt; ()</span><br><span class="line"><span class="title">foo</span> _ = ()</span><br></pre></td></tr></table></figure>
+
+<p>就定义了一个它的F-代数，但这显然不是我们想要的那个递归类型. 怎么从这一堆的F-代数中选出我们的那个递归类型呢？</p>
+<h2 id="初始F-代数"><a href="#初始F-代数" class="headerlink" title="初始F-代数"></a>初始F-代数</h2><p>在一个范畴中，如果其中的一个对象到这个范畴中的任意对象都有<strong>唯一</strong>的态射，则它是<strong>初始对象（initial object）</strong>.</p>
 <blockquote>
 <p>初始对象不是一定存在的.</p>
 </blockquote>
-<p>对于函子F的F-代数范畴，有没有初始对象呢？我们先从弱初始对象开始.</p>
+<p>现在我们来看看函子$F$的F-代数范畴的初始对象长什么样吧. 假设我们有这个初始对象$(T, FT\to T)$，首先根据定义，它到任意的F-代数都有一个态射. 在F-代数范畴中一个态射意味着一个同态，也就是说，对于任意的F-代数$f:FX\to X$都有一个同态，记为${\rm fold}_X(f):T\to X$，如下图所示：</p>
+<blockquote>
+<p>我们把这个初始对象的态射记为${\rm in}:FT\to T$.</p>
+</blockquote>
+<p><img src="2.png" alt="2.png"></p>
+<p>接下来，因为它对任意的F-代数都有这个性质，我们先再考虑另一个F-代数$g:FY\to Y$，并且有同态$h:X\to Y$. 同时，因为$T$的初始性，我们同样有从T到Y的同态${\rm fold}_Y(g):T\to Y$：</p>
+<p><img src="3.png" alt="3.png"></p>
+<p>我们知道范畴中的箭头是可以复合的，而$T$的初始性又告诉我们，从$T$到$Y$的同态有且只有一个，因此我们有了第一个结论：<br>$$<br>h\circ{\rm fold}_X(f) = {\rm fold}_Y(g)\tag{1}<br>$$<br>然后，因为$T$自己也是一个F-代数，我们有：</p>
+<p><img src="4.png" alt="4.png"></p>
+<p>我们知道任意对象都有到自己的$id$态射，而同时$T$又有唯一的到自己的同态${\rm fold}_T({\rm in})$，因此我们有第二个结论：<br>$$<br>{\rm fold}_T({\rm in})=id_T \tag{2}<br>$$<br>有趣的是，如果一个代数满足$(1)$和$(2)$这两个条件，也可以推出它就是初始代数. 首先由$(1)$，我们把其中的$X$换成$T$，$Y$换成$X$（这个换不换都行啦）：</p>
+<p><img src="5.png" alt="5.png"></p>
+<p>又因为条件$(2)$，我们知道${\rm fold}_T({\rm in})$其实就是$id_T$. 我们有$h\circ id_T={\rm fold}_T({\rm in})$，而$h\circ id_T=h$. 也就是说，对于任意的代数$X$，这个同态${\rm fold}_T({\rm in}):T\to X$是唯一的，因此$T$确实是初始代数.</p>
+<h2 id="你说得对，那同构在哪？"><a href="#你说得对，那同构在哪？" class="headerlink" title="你说得对，那同构在哪？"></a>你说得对，那同构在哪？</h2><p>更神奇的是，如果$(T,{\rm in})$是初始F-代数的话，$\rm in$是个同构！也就是说，我们可以免费得到另一个反方向的箭头${\rm out}:T\to FT$，而且满足${\rm in}\circ{\rm out}={\rm out}\circ{\rm in}=id$. 怎么做呢？</p>
+<p>首先，因为$F$是个函子，我们可以作用在${\rm in}:FT\to T$上得到$F\ {\rm in}:F(FT)\to FT$. 我们发现这同样是个以$FT$为对象的F-代数. 因此，结合$T$的初始性，不是我们有从$T$到$FT$的同态嘛，也就是${\rm fold}<em>{FT}(F\ {\rm in}):T\to FT$. 而且，这个同态是唯一的，因此它就是${\rm out}={\rm fold}</em>{FT}(F\ {\rm in})$. 很神奇吧！</p>
+<p><img src="6.png" alt="6.png"></p>
+<p>不过你先别急，我们还要验证这是否真的构成同构呢. 现在让我们凝视下面这张有魔力的图：</p>
+<p><img src="7.png" alt="7.png"></p>
+<p>左边这个方块就是刚刚的图，而右边的方块自己看发现是废话. 不过很快我们可以发现${\rm in}\circ{\rm out}$是个从$T\to T$的同态，而$id_T$也是. 由唯一性我们可以得到${\rm in}\circ{\rm out}=id$.</p>
+<p>现在我们再看左侧方块，由函子的性质我们有：<br>$$<br>{\rm out}\circ{\rm in}=F\ {\rm in}\circ F\ {\rm out}=F\ ({\rm in}\circ {\rm out})=F\ id=id<br>$$<br>完成了，现在我们可以很放心的说$\rm in$和$\rm out$确实是一对同构了！</p>
+<h2 id="回到递归类型"><a href="#回到递归类型" class="headerlink" title="回到递归类型"></a>回到递归类型</h2><p>回顾一下，我们刚刚证明了对于函子$F$的F-代数，初始代数$(T,{\rm in}:FT\to T)$（意味着我们有到其他代数的唯一同态${\rm fold}_{X}(g)$）和免费得到的${\rm out}:T\to FT$构成同构. 这正对应着我们刚才讨论的递归类型的定义：$F$的初始代数就是我们想要的那个不动点$T\simeq FT$. 更进一步的，在这个F-代数范畴，我们将$X\to Y$视为偏序关系$X \sqsubseteq Y$的话，我们的初始代数对应的就是$F$的<strong>最小不动点</strong>. </p>
+<p>回到刚刚<code>IntList</code>的例子：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">foldX</span> :: (<span class="type">IntList</span> a -&gt; a) -&gt; <span class="type">X</span> -&gt; a</span><br><span class="line"><span class="title">foldX</span> k t = t k</span><br><span class="line"></span><br><span class="line"><span class="title">to</span> :: <span class="type">X</span> -&gt; <span class="type">IntList</span> <span class="type">X</span></span><br><span class="line"><span class="title">to</span> = foldX (fmap from)</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> :: <span class="type">IntList</span> <span class="type">X</span> -&gt; <span class="type">X</span></span><br><span class="line"><span class="title">from</span> s k = k (fmap (foldX k) s)</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt">Philip Wadler, Recursive types for free!</a></p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S2352220816301201">Jiří Adámek, Stefan Milius, Lawrence S. Moss, Fixed points of functors</a></p>
 
     
 
@@ -614,7 +648,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%A5%E6%98%AFADT%E5%91%A2%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">啥是ADT呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-2"><span class="toc-number">1.1.</span> <span class="toc-text">1+1&#x3D;2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%90%8C%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">类型同构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E8%BF%90%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">更多运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%8C%83%E7%95%B4"><span class="toc-number">1.4.</span> <span class="toc-text">类型范畴</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%82%A3%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%E5%91%A2%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">那递归类型呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E5%AD%90%E7%9A%84%E4%B8%8D%E5%8A%A8%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">函子的不动点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text">同构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#X%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">X是什么呢？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">从零开始的递归类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8EF-%E4%BB%A3%E6%95%B0%E5%BC%80%E5%A7%8B"><span class="toc-number">3.1.</span> <span class="toc-text">从F-代数开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%E4%BD%9C%E4%B8%BAF-%E4%BB%A3%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">递归类型作为F-代数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8BF-%E4%BB%A3%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">初始F-代数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%95%A5%E6%98%AFADT%E5%91%A2%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">啥是ADT呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-2"><span class="toc-number">1.1.</span> <span class="toc-text">1+1&#x3D;2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%90%8C%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">类型同构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E8%BF%90%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">更多运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%8C%83%E7%95%B4"><span class="toc-number">1.4.</span> <span class="toc-text">类型范畴</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%82%A3%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%E5%91%A2%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">那递归类型呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E5%AD%90%E7%9A%84%E4%B8%8D%E5%8A%A8%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">函子的不动点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text">同构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">T是什么呢？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">从零开始的递归类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8EF-%E4%BB%A3%E6%95%B0%E5%BC%80%E5%A7%8B"><span class="toc-number">3.1.</span> <span class="toc-text">从F-代数开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%E4%BD%9C%E4%B8%BAF-%E4%BB%A3%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">递归类型作为F-代数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8BF-%E4%BB%A3%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">初始F-代数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E8%AF%B4%E5%BE%97%E5%AF%B9%EF%BC%8C%E9%82%A3%E5%90%8C%E6%9E%84%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-number">3.4.</span> <span class="toc-text">你说得对，那同构在哪？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">回到递归类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -783,6 +817,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">实现</a>
               </li>
             
             <div class="clearfix"></div>

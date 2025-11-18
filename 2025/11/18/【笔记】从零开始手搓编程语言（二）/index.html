@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://salty-frankenstein.github.io">
-  <title>Tag: 教程 | 地灵殿</title>
+  <title>【笔记】从零开始手搓编程语言（二） | 地灵殿</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="地灵殿">
-<meta property="og:url" content="https://salty-frankenstein.github.io/tags/%E6%95%99%E7%A8%8B/index.html">
+  <meta name="description" content="在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】从零开始手搓编程语言（二）">
+<meta property="og:url" content="https://salty-frankenstein.github.io/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="地灵殿">
+<meta property="og:description" content="在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-18T04:34:54.000Z">
+<meta property="article:modified_time" content="2025-11-18T16:46:36.382Z">
 <meta property="article:author" content="Frankenstein">
+<meta property="article:tag" content="实现">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/blog/atom.xml" title="地灵殿" type="application/atom+xml">
@@ -224,41 +230,164 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-【笔记】从零开始手搓编程语言（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      【笔记】从零开始手搓编程语言（二）
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/blog/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
         <time datetime="2025-11-18T04:34:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-11-18</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_blank">【笔记】从零开始手搓编程语言（二）</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。</p>
+<p>接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。</p>
+<span id="more"></span>
+
+<h1 id="Week-2-Labels-amp-Strings"><a href="#Week-2-Labels-amp-Strings" class="headerlink" title="Week 2: Labels &amp; Strings"></a>Week 2: Labels &amp; Strings</h1><p>为了实现这一点，我们在上次的HEX语言的基础上进行改进，可以支持代码中的地址用符号表示，并可以以绝对/相对地址模式引用它们。</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>首先要注意不管怎么说，我们现在手上的工具还很有限，我们的语言设计要尽可能易于实现。</p>
+<p>这次我们的语言对应一个状态机，它会记录当前的<strong>虚拟地址</strong>和<strong>文件偏移量</strong>，每读到一个十六进制数都会更新它们。</p>
+<ul>
+<li><p>首先我们需要支持定义label，为了简化实现我们以冒号后面跟label名为格式：例如定义<code>loop</code>label就写成<code>:loop</code>，这样读到<code>:</code>我们就可以进入对应的逻辑了。读到label时，我们只需要把当前状态中的虚拟地址和文件偏移量存起来以供后续引用即可。</p>
+</li>
+<li><p>然后是引用的方法。我们用<code>=loop</code>表示引用<code>loop</code>的<strong>绝对地址</strong>，而<code>-loop</code>表示引用<strong>相对地址</strong>，也就是<code>loop</code>的地址减掉这个引用的地方的地址。</p>
+</li>
+<li><p>我们还提供<code>$loop</code>来引用<code>loop</code>位置的文件偏移量。</p>
+</li>
+<li><p>为了提供灵活性我们设计<code>000010000@</code>来表示将当前状态的虚拟地址设置成<code>@</code>前面的数，也就是<code>0x10000</code>。同样，这个顺序也是为了简化实现。</p>
+</li>
+</ul>
+<p>有了这些功能可以简化很多我们之前数字节的工作。首先是跳转语句可以写成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:loop</span><br><span class="line">...</span><br><span class="line">E9 -loop                ;; jmp loop</span><br></pre></td></tr></table></figure>
+
+<p>其次，在访问全局变量的内存地址时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0001000c@ :curn         ; define a variable curn at 0x1000c</span><br><span class="line">C7 05 =curn 00000000    ; mov [curn], 0</span><br></pre></td></tr></table></figure>
+
+<p>最后，在填写ELF头时，文件大小我们可以通过在文件末尾插入一个label然后引用它的文件偏移量来自动得出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$EOF	;; the file size</span><br><span class="line">...</span><br><span class="line">:EOF	;; put this line at the end of the file</span><br></pre></td></tr></table></figure>
+
+<p>看起来很不错！那怎么实现呢？</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>首先这个状态机要记录当前读到的数字<code>curnum</code>，当前的文件偏移量<code>fileoffset</code>，当前的虚拟地址<code>viraddr</code>。</p>
+<p>首先我们会发现，正如上面的<code>EOF</code>例子，label是可以先使用后定义的（所有的向后跳转也是一样），这意味着我们没办法单pass从头到尾扫一遍解决这个问题。于是，我们第一遍先把所有的十六进制数都输出到一个buffer，所有的需要填label的地方先空出来，并且第一遍我们把所有的label所在地的地址信息都收集起来。全部读完之后，再根据每个需要填label的地方，填上对应的地址，就大功告成了。也就是说，在内存里我们需要一个输出buffer，一个label表负责记录所有程序中的label和地址，以及一个fixup表负责记录每个需要填写的地方供第二遍填写的时候使用。</p>
+<p>基于上次的代码逻辑，主循环是不变的，只是对于数字我们先输出到buffer而不是标准输出。主循环的其它情况：</p>
+<ul>
+<li>当读到<code>@</code>时，此时<code>curnum</code>应该已经有一个数字了，将<code>viraddr</code>置为<code>curnum</code>，并且不输出数字。</li>
+<li>当读到<code>:</code>时，读取后面的label，随后把当前的<code>viraddr</code>和<code>fileoffset</code>记入label表。</li>
+<li>当读到<code>=</code>时，读取后面的label，在输出buffer留4字节的空位，并在fixup表注册当前的buffer指针、这个label需要写入绝对地址。</li>
+<li>当读到<code>-</code>时，读取后面的label，在输出buffer留4字节的空位，并在fixup表注册当前的buffer指针、这个label需要写入相对地址。</li>
+<li>当读到<code>$</code>时，读取后面的label，在输出buffer留4字节的空位，并在fixup表注册当前的buffer指针、这个label需要写入文件偏移量。</li>
+</ul>
+<p>大概思路就是这样了。</p>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><p>因为实现起来很麻烦，所以我们能简化就简化。</p>
+<p>首先要解决的是label的表示问题，因为字符串实在太麻烦了。反正是给自己用的，首先限制label最多4个字符，然后只能使用大小写字母。然后我们就观察到，字母们的ASCII分布在<code>0x40</code>到<code>0x70</code>之间，他们的高字节为<code>0100</code>, <code>0101</code>，<code>0110</code>，<code>0111</code>，前面的<code>01</code>是相同的，我们直接抹掉。这样我们就可以用6bit表示一个字母，4个字符的label就是一个24bit的数。这是一个完美哈希，我们直接用这个数做label表的下标，label表每个entry记录虚拟地址和文件偏移量两个32位数共8字节，整个哈希表开64MiB就够了。更好的是，因为是哈希表，所以我们可以很方便的根据label找到对应存放它虚拟地址或是文件偏移量的地方，这是确定的！</p>
+<p>有了label表，fixup表就很方便了，每个entry记录两个指针：要输出到的buffer地址，和引用的label表中对应的地址，这个是确定的。</p>
+<p>最后一个小细节：在fixup的时候，填绝对地址的时候很简单，而填相对地址的时候我们还要减去那个引用处的地址。既然如此我们为什么不在一开始就减去呢？在遇到<code>=</code>时，在buffer处填0；在<code>-</code>时，则填写当前地址取负。这样在fixup时，在目标buffer地址处加上对应的地址就好啦。</p>
+<p>于是我们可以耐心写出汇编程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line"></span><br><span class="line">section .data</span><br><span class="line">fileoffset:    dd 0        ; fileoffset, the next empty byte of out</span><br><span class="line">viraddr:       dd 0        ; </span><br><span class="line">curnum:        dd 0        ; </span><br><span class="line">fixupidx:      dd 0        ; index of the fixup table</span><br><span class="line"></span><br><span class="line">section .bss</span><br><span class="line">out:  resb 0x20000   </span><br><span class="line">label:  resb 0x20000   </span><br><span class="line">fixup:  resb 0x8000000  </span><br><span class="line"></span><br><span class="line">section .text</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    ;; edi: bytes rea</span><br><span class="line">    mov edi, 0</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">clearcomment:</span><br><span class="line">    call readbyte</span><br><span class="line">    cmp eax, 0x0A       ;; if ch != &#x27;\n&#x27; goto clear</span><br><span class="line">    jne clearcomment</span><br><span class="line"></span><br><span class="line">loop:</span><br><span class="line">    mov ebp, 0          ;; loop variable: read number twice</span><br><span class="line">    </span><br><span class="line">startread:</span><br><span class="line">    call readbyte</span><br><span class="line"></span><br><span class="line">    cmp eax, 0x3B       ;; if ch == &#x27;;&#x27; goto clear</span><br><span class="line">    je clearcomment</span><br><span class="line"></span><br><span class="line">    cmp eax, 0x40       ;; if ch != &#x27;@&#x27; goto notat</span><br><span class="line">    jne notat</span><br><span class="line">    mov eax, [curnum]   ;; viraddr &lt;- curnum</span><br><span class="line">    mov [viraddr], eax</span><br><span class="line">    mov dword [curnum], 0</span><br><span class="line">    mov edi, 0          ;; size of curnum = 0 !!</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">notat:</span><br><span class="line">    cmp eax, 0x3A           ;; if ch != &#x27;:&#x27; goto notcolon</span><br><span class="line">    jne notcolon</span><br><span class="line"></span><br><span class="line">    call readlabel          ;; the result hash is in esi</span><br><span class="line">    shl esi, 3              ;; an entry has 8 bytes</span><br><span class="line">    mov eax, [fileoffset]   ;; label[hash].file &lt;- fileoffset </span><br><span class="line">    mov [esi+label], eax    </span><br><span class="line">    mov eax, [viraddr]      ;; label[hash].vir &lt;- viraddr</span><br><span class="line">        </span><br><span class="line">    mov [esi+label+4], eax  </span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">notcolon:</span><br><span class="line">    mov ecx, eax            ;; here we handle &#x27;=&#x27; and &#x27;-&#x27;</span><br><span class="line">    push eax                ;; save eax == ch</span><br><span class="line">    xor ecx, 0x2D</span><br><span class="line">    and ecx, 0xFFFFFFEF</span><br><span class="line">    cmp ecx, 0</span><br><span class="line">    jne not2D3D             ;; if ch != 2D or 3D</span><br><span class="line"></span><br><span class="line">    call readlabel</span><br><span class="line">    mov eax, [fixupidx]     ;; fixup[fixupidx].out &lt;- fileoffset</span><br><span class="line">    mov ebx, [fileoffset]</span><br><span class="line">    mov [eax+fixup], ebx</span><br><span class="line"></span><br><span class="line">    shl esi, 3              ;; vaddridx of hash </span><br><span class="line">    add esi, label+4        </span><br><span class="line">    add eax, 4              ;; fixup[fixupidx].label &lt;- vaddridx</span><br><span class="line">    add [eax+fixup], esi</span><br><span class="line">    </span><br><span class="line">    add dword [fixupidx], 8 ;; point to the next entry</span><br><span class="line"></span><br><span class="line">    ;; if ch == 0x2D, relative substract from output in advance</span><br><span class="line">    pop eax</span><br><span class="line">    xor eax, 0x2D           ;; now eax is either 3D or 2D</span><br><span class="line">    shr eax, 4              ;; 0 or 1</span><br><span class="line">    sub eax, 1              ;; mask</span><br><span class="line">    mov ebx, [viraddr]      ;; ebx &lt;- viraddr + 4</span><br><span class="line">    add ebx, 4</span><br><span class="line">    and ebx, eax            ;; assign only when eax == 2D</span><br><span class="line">    mov eax, [fileoffset]</span><br><span class="line">    sub [eax+out], ebx</span><br><span class="line"></span><br><span class="line">    add dword [fileoffset], 4       ;; point to the next number</span><br><span class="line">    add dword [viraddr], 4          ;; update viraddr!!</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">not2D3D:</span><br><span class="line">    cmp eax, 0x24           ;; if ch != &#x27;$&#x27; goto notdollar</span><br><span class="line">    jne notdollar</span><br><span class="line"></span><br><span class="line">    call readlabel</span><br><span class="line">    mov eax, [fixupidx]     ;; fixup[fixupidx].out &lt;- fileoffset</span><br><span class="line">    mov ebx, [fileoffset]</span><br><span class="line">    mov [eax+fixup], ebx</span><br><span class="line"></span><br><span class="line">    shl esi, 3              ;; fileaddridx of hash </span><br><span class="line">    add esi, label</span><br><span class="line">    add eax, 4              ;; fixup[fixupidx].label &lt;- fileidx</span><br><span class="line">    add [eax+fixup], esi</span><br><span class="line">    </span><br><span class="line">    add dword [fixupidx], 8          ;; point to the next entry</span><br><span class="line">    add dword [fileoffset], 4       ;; point to the next number</span><br><span class="line">    add dword [viraddr], 4          ;; update viraddr!!</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">notdollar:</span><br><span class="line">    ;; the origin logic of stage 1</span><br><span class="line">    cmp eax, 0x20           ;; if ch &lt;= 0x20(white) goto emit</span><br><span class="line">    jbe emit</span><br><span class="line"></span><br><span class="line">    cmp eax, 0x40           ;; if ch &lt; 0x40 (digits) goto mask</span><br><span class="line">    jb mask</span><br><span class="line"></span><br><span class="line">    sub eax, 0x7            ;; ch -= 7</span><br><span class="line"></span><br><span class="line">mask:</span><br><span class="line">    and eax, 0xF</span><br><span class="line">    shl dword [curnum], 4         ;; esi = (esi &lt;&lt; 4) | eax</span><br><span class="line">    or [curnum], eax</span><br><span class="line">    add ebp, 1</span><br><span class="line">    cmp ebp, 2</span><br><span class="line">    jb startread            ;; 2 digits = 1 byte</span><br><span class="line">    add edi, 1              ;; byte read + 1</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">emit:</span><br><span class="line">    cmp edi, 0              ;; if it reads nothing</span><br><span class="line">    je loop</span><br><span class="line"></span><br><span class="line">    mov eax, [fileoffset]   ;; write 1 byte</span><br><span class="line">    mov ebx, [curnum]</span><br><span class="line">    mov [eax+out], bl       ;; out[fileoffset] = curnum</span><br><span class="line">    shr dword [curnum], 8</span><br><span class="line"></span><br><span class="line">    add dword [fileoffset], 1     ;; point to next byte</span><br><span class="line">    add dword [viraddr], 1        ;; update viraddr</span><br><span class="line"></span><br><span class="line">    sub edi, 1              ;; count byte to emit</span><br><span class="line">    cmp edi, 0</span><br><span class="line">    ja emit</span><br><span class="line">    jmp loop</span><br><span class="line"></span><br><span class="line">readbyte:   ; read a byte, return in eax</span><br><span class="line">    push 0</span><br><span class="line">    mov eax, 3</span><br><span class="line">    mov ebx, 0</span><br><span class="line">    mov ecx, esp</span><br><span class="line">    mov edx, 1</span><br><span class="line">    int 0x80</span><br><span class="line"></span><br><span class="line">    ; HACK: if read EOF, do fixup</span><br><span class="line">    cmp eax, 0</span><br><span class="line">    je done</span><br><span class="line"></span><br><span class="line">    ;; get char</span><br><span class="line">    pop eax</span><br><span class="line">    ret</span><br><span class="line"></span><br><span class="line">readlabel:          ;; read a label, get the hash value</span><br><span class="line">                    ;; return in esi</span><br><span class="line">                    ;; a label is up to 4 bytes</span><br><span class="line">    mov esi, 0</span><br><span class="line">inner:</span><br><span class="line">    call readbyte</span><br><span class="line"></span><br><span class="line">    cmp eax, 0x20   ;; if ch == is white goto iswhite</span><br><span class="line">    jbe iswhite</span><br><span class="line"></span><br><span class="line">    and eax, 0x3F</span><br><span class="line">    shl esi, 6      ;; esi = (esi &lt;&lt; 6) | eax</span><br><span class="line">    or esi, eax</span><br><span class="line">    </span><br><span class="line">    jmp inner</span><br><span class="line"></span><br><span class="line">iswhite:</span><br><span class="line">    ret</span><br><span class="line">    </span><br><span class="line">done:                   ;; after reading fill fixup</span><br><span class="line">    mov edi, fixup      ;; edi: index, base</span><br><span class="line">    mov ecx, [fixupidx] ;; ecx: boundary</span><br><span class="line">    add ecx, fixup</span><br><span class="line"></span><br><span class="line">fixuploop:</span><br><span class="line">    mov eax, [edi]      ;; eax &lt;- output pointer</span><br><span class="line">    mov ebx, [edi+4]    ;; ebx &lt;- label pointer</span><br><span class="line"></span><br><span class="line">    mov ebx, [ebx]</span><br><span class="line">    add [eax+out], ebx  ;; [outputptr] += [labelptr]</span><br><span class="line"></span><br><span class="line">    add edi, 8          ;; point to the next entry</span><br><span class="line">    cmp edi, ecx        ;; if edi &lt; fixupidx goto fixuploop</span><br><span class="line">    jb fixuploop</span><br><span class="line"></span><br><span class="line">output:                 ;; then output</span><br><span class="line">    mov eax, 4          ;; use one write call to output everything</span><br><span class="line">    mov ebx, 1</span><br><span class="line">    mov ecx, out</span><br><span class="line">    mov edx, [fileoffset]</span><br><span class="line">    int 0x80</span><br><span class="line"></span><br><span class="line">    ;; exit(0)</span><br><span class="line">    mov eax, 1</span><br><span class="line">    mov ebx, 0</span><br><span class="line">    int 0x80</span><br></pre></td></tr></table></figure>
+
+<p>里面还有一个小细节：</p>
+<p>在<code>=</code>和<code>-</code>的逻辑中唯一的区别是<code>-</code>需要在buffer处写当前地址的负，而<code>=</code>什么都不做。而注意到<code>=</code>和<code>-</code>的ASCII分别是<code>0x3D</code>和<code>0x2D</code>，二进制只差1位。所以我们可以很方便的利用它做一个掩码，就可以实现只在<code>-</code>的时候写入负数了。这样可以省掉一个跳转指令，因为填起来很麻烦！</p>
+<h2 id="流程：正攻vs-邪道"><a href="#流程：正攻vs-邪道" class="headerlink" title="流程：正攻vs.邪道"></a>流程：正攻vs.邪道</h2><p>和上次一样，我们依然没有汇编器。正攻的流程是，我们还是要把上面的汇编代码给手敲成机器码，我们可以用上次的工具，省掉直接敲二进制的工作了。不过链接数字节这一步是省不了的。这样得到了二进制，再慢慢调试吧……其中的每一步都可能出错！</p>
+<p>于是，我还是先用现成的汇编器得到了二进制，然后调试得到了至少保证正确的汇编代码。然后下一步仍然是要手敲机器码。不过因为这次我们开发了新语言，我们可以先用我们的新语言的语法来写，也就是指令是十六进制，而地址是带符号的版本，得到<code>stage2.hex</code>。</p>
+<p>此时，这个文件仍然没办法使用，因为我们理论上还没有它的第一个解析器！不过既然我们已经用邪道得到了一个汇编写的解析器了，我们为什么不先利用一下它呢？于是我用它输入<code>stage2.hex</code>来测试一下，得到了对应的二进制，然后反汇编出来做参考来检查这个手敲机器码的过程有没有出错。事实证明还是错了挺多地方的，主要是寻址指令的地方。</p>
+<p>好了，现在我们用了一些小手段确保这个源码也没错之后，最后一步就是手动链接了。这个代码太长了，要掰手指数字节还是摇了我吧！于是我仍然参考反汇编的结果，把要填地址的地方一个个填了进去，过程中同样可以用那个“黄金版本”来检查有没有填错。</p>
+<p>总之不管怎么说，总算得到了一个纯手写的纯手链接的十六进制文件<code>stage2-linked.hex</code>。至此，就可以用上次的工具转成二进制了。我们可以验证一下结果：</p>
+<p>先用<code>stage1</code>把源码<code>stage2-linked.hex</code>转成二进制<code>stage2</code>，然后这个程序应该能编译我们带符号版本的源码<code>stage2.hex</code>。最后得到的东西应该是一样的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stage1 &lt; stage2-linked.hex &gt; stage2</span><br><span class="line">stage2 &lt; stage2.hex &gt; stage2_</span><br><span class="line">diff stage2 stage2_</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用：字符串"><a href="#应用：字符串" class="headerlink" title="应用：字符串"></a>应用：字符串</h2><p>现在我们的“开发体验”已经大大提升了：我们可以放心修改源码、大胆使用跳转指令不用怕重新填写了！现在我们在此基础上可以稍微再改进一下这个源码，增加支持字符串的功能：</p>
+<ul>
+<li><code>&quot;xxx&quot;</code>双引号代表字符串，字符串里的内容作为ASCII直接输出到buffer即可</li>
+<li><code>\</code>为转义符，这样可以输出引号本身<code>&quot;\&quot;&quot;</code>，反斜杠本身也同理<code>&quot;\\&quot;</code>，为了简化实现，这是唯二支持转移的符号</li>
+</ul>
+<p>实现起来也非常简单：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="type">char</span> = read_char();</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">char</span> == <span class="string">&#x27;&quot;&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">char</span> == <span class="string">&#x27;\\&#x27;</span>) <span class="type">char</span> = read_char();</span><br><span class="line">    output(<span class="type">char</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开发体验很好了，我们可以直接修改源码，修改得到<code>stage3.hex</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">;; after reading a byte</span><br><span class="line">:ntdl</span><br><span class="line">81 F8 00000022          ;; cmp eax, 0x22           ;; if ch == &quot;\&quot;&quot; goto readstring</span><br><span class="line">0F 84 -rdst             ;; je readstring</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">:rdst                   ;; read a string</span><br><span class="line">E8 -rdby                ;; call rdby</span><br><span class="line">    </span><br><span class="line">81 F8 00000022          ;; cmp eax, 0x22           ;; if ch == &quot;\&quot;&quot; goto loop</span><br><span class="line">0F 84 -loop             ;; je loop</span><br><span class="line"></span><br><span class="line">81 F8 0000005C          ;; cmp eax, 0x5C           ;; if ch == &quot;\\&quot; read another</span><br><span class="line">0F 85 -ptcr             ;; jne ptcr</span><br><span class="line">E8 -rdby                ;; call rdby</span><br><span class="line"></span><br><span class="line">:ptcr</span><br><span class="line">8B 1D =foff             ;; mov ebx, [foff]   ;; out[foff] &lt;- ch</span><br><span class="line">88 83 =outp             ;; mov [ebx+outp], eax</span><br><span class="line">81 05 =foff 00000001    ;; add dword [foff], 1     ;; foff++; vadr++</span><br><span class="line">81 05 =vadr 00000001    ;; add dword [vadr], 1</span><br><span class="line">E9 -rdst                ;; jmp rdst</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>最后测试一下：</p>
+<p>首先我们可以利用新的字符串功能重写这个代码得到<code>stage3-str.hex</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">;; after reading a byte</span><br><span class="line">:ntdl</span><br><span class="line">81 F8 &quot;\&quot;&quot; 000000          ;; cmp eax, 0x22           ;; if ch == &quot;\&quot;&quot; goto readstring</span><br><span class="line">0F 84 -rdst             ;; je readstring</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>首先我们用刚刚的<code>stage2</code>程序来编译<code>stage3.hex</code>，得到的二进制应该可以支持新的语法<code>stage3-str.hex</code>。这两个得到的程序应该是一样的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stage2 &lt; stage3.hex &gt; stage3</span><br><span class="line">stage3 &lt; stage3-str.hex &gt; stage3_</span><br><span class="line">diff stage3 stage3_</span><br></pre></td></tr></table></figure>
+
+<p>差不多完成了，现在我们可以写比较体面的代码了。（？）</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Frankenstein
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://salty-frankenstein.github.io/blog/2025/11/18/【笔记】从零开始手搓编程语言（二）/" title="【笔记】从零开始手搓编程语言（二）" target="_blank">https://salty-frankenstein.github.io/blog/2025/11/18/【笔记】从零开始手搓编程语言（二）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -274,7 +403,7 @@
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -287,585 +416,138 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://salty-frankenstein.github.io/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+          <!-- giscus 配置开始 -->
+	      
+	      <script src="https://giscus.app/client.js"
+	      data-repo="salty-Frankenstein/hello"
+	      data-repo-id="MDEwOlJlcG9zaXRvcnkxMTA4NjExMzk="
+	      data-category="Announcements"
+	      data-category-id="DIC_kwDOBpubU84CxmOq"
+	      data-mapping="url"
+	      data-strict="0"
+	      data-reactions-enabled="1"
+	      data-emit-metadata="0"
+	      data-input-position="bottom"
+	      data-theme="light"
+	      data-lang="zh-CN"
+	      data-loading="lazy"
+	      crossorigin="anonymous"
+	      async>
+	      </script>
+	      
+	  <!-- giscus 配置结束 -->
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2025/11/12/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-        <time datetime="2025-11-12T04:29:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-11-12</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2025/11/12/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【笔记】从零开始手搓编程语言（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2025/11/12/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank">【笔记】从零开始手搓编程语言（一）</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实现</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/笔记//" class="article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week-2-Labels-amp-Strings"><span class="toc-number">1.</span> <span class="toc-text">Week 2: Labels &amp; Strings</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-number">1.3.</span> <span class="toc-text">实现细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%EF%BC%9A%E6%AD%A3%E6%94%BBvs-%E9%82%AA%E9%81%93"><span class="toc-number">1.4.</span> <span class="toc-text">流程：正攻vs.邪道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.5.</span> <span class="toc-text">应用：字符串</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2025/09/24/%E3%80%90%E6%9D%82%E8%AE%B0%E3%80%91OCaml%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%81/" class="archive-article-date">
-        <time datetime="2025-09-24T12:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-09-24</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2025/09/24/%E3%80%90%E6%9D%82%E8%AE%B0%E3%80%91OCaml%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%81/" target="_blank">【欧卡猫】OCaml，启动！</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Haskell</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/开发笔记//" class="article-tag-list-link color5">开发笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/" class="archive-article-date">
-        <time datetime="2025-07-10T13:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-07-10</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/" target="_blank">【函数式】免费的递归类型？</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Haskell</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/11/01/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%BA%94%E3%80%81Types-dependent-on-terms/" class="archive-article-date">
-        <time datetime="2021-11-01T10:58:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/11/01/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%BA%94%E3%80%81Types-dependent-on-terms/" target="_blank">【类型论】五、Types dependent on terms</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类型论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/06/05/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%AD%90%E7%B1%BB%E5%9E%8B%E5%A4%9A%E6%80%81/" class="archive-article-date">
-        <time datetime="2021-06-05T04:18:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/06/05/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%AD%90%E7%B1%BB%E5%9E%8B%E5%A4%9A%E6%80%81/" target="_blank">【函数式】如何使用子类型多态</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Haskell</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/杂记//" class="article-tag-list-link color3">杂记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/03/22/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E5%9B%9B%E3%80%81Types-dependent-on-types/" class="archive-article-date">
-        <time datetime="2021-03-22T10:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-22</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/03/22/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E5%9B%9B%E3%80%81Types-dependent-on-types/" target="_blank">【类型论】四、Types dependent on types</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类型论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/03/16/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%B8%89%E3%80%81Second-order-typed-lambda-calculus/" class="archive-article-date">
-        <time datetime="2021-03-16T11:41:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/03/16/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%B8%89%E3%80%81Second-order-typed-lambda-calculus/" target="_blank">【类型论】三、Second order typed lambda calculus</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类型论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/03/06/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%BA%8C%E3%80%81Simply-typed-lambda-calculus/" class="archive-article-date">
-        <time datetime="2021-03-06T11:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/03/06/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%BA%8C%E3%80%81Simply-typed-lambda-calculus/" target="_blank">【类型论】二、Simply typed lambda calculus</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类型论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/blog/2021/03/06/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%B8%80%E3%80%81Untyped-lambda-calculus/" class="archive-article-date">
-        <time datetime="2021-03-06T06:23:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/blog/2021/03/06/%E3%80%90%E7%B1%BB%E5%9E%8B%E8%AE%BA%E3%80%91%E4%B8%80%E3%80%81Untyped-lambda-calculus/" target="_blank">【类型论】一、Untyped lambda calculus</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">函数式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">类型论</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/blog/categories/小课堂//" class="article-tag-list-link color4">小课堂</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/tags/%E6%95%99%E7%A8%8B/page/2/">2</a><a class="extend next" rel="next" href="/blog/tags/%E6%95%99%E7%A8%8B/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -906,9 +588,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

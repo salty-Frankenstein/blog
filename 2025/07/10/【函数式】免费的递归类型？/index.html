@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过Haskell中ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.">
+  <meta name="description" content="最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过如何使用ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【函数式】免费的递归类型？">
 <meta property="og:url" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/index.html">
 <meta property="og:site_name" content="地灵殿">
-<meta property="og:description" content="最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过Haskell中ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.">
+<meta property="og:description" content="最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过如何使用ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/0.png">
 <meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/1.png">
@@ -27,8 +27,9 @@
 <meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/7.png">
 <meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/8.png">
 <meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/9.png">
+<meta property="og:image" content="https://salty-frankenstein.github.io/2025/07/10/%E3%80%90%E5%87%BD%E6%95%B0%E5%BC%8F%E3%80%91%E5%85%8D%E8%B4%B9%E7%9A%84%E9%80%92%E5%BD%92%E7%B1%BB%E5%9E%8B%EF%BC%9F/2.png">
 <meta property="article:published_time" content="2025-07-10T13:18:53.000Z">
-<meta property="article:modified_time" content="2025-11-27T18:41:37.982Z">
+<meta property="article:modified_time" content="2025-11-30T06:25:11.015Z">
 <meta property="article:author" content="Frankenstein">
 <meta property="article:tag" content="Haskell">
 <meta property="article:tag" content="函数式">
@@ -281,7 +282,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">5.3k字</span>
+      <span class="post-count">5.7k字</span>
     </span>
   </span>
 
@@ -290,7 +291,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">20分</span>
+      <span class="post-count">22分</span>
     </span>
   </span>
 </div>
@@ -301,7 +302,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过Haskell中ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.</p>
+    <p>最近被问到了关于ADT的事情呢，于是想写一篇速通关于ADT、递归类型是怎么回事. 它面向了解过如何使用ADT，不过对ADT和递归类型的背后理论感兴趣的人，其他的部分我会尽可能self-contained.</p>
 <span id="more"></span>
 
 <h1 id="啥是ADT呢？"><a href="#啥是ADT呢？" class="headerlink" title="啥是ADT呢？"></a>啥是ADT呢？</h1><p>代数数据类型（Algebraic Data Types）顾名思义就是可以做运算的数据类型. 这里算的数字很简单就是这个数据类型的值的数量.</p>
@@ -327,7 +328,7 @@
 <h2 id="更多运算"><a href="#更多运算" class="headerlink" title="更多运算"></a>更多运算</h2><ul>
 <li><strong>乘法</strong>：对应积类型（product types）. 不过更熟悉 的称呼应该是（二）元组，大多数编程语言都有的. 元组<code>(A, B)</code>，如果<code>A</code>有$a$个值，<code>B</code>有$b$个，那这个元组类型就有$A\times B$个.</li>
 <li>$1\times 2=2$：用1乘上2，<code>((), Bool)</code>，确实只有两个值的<code>((), True)</code>和<code>((), False)</code>.</li>
-<li><strong>幂</strong>：对应函数类型<code>A -&gt; B</code>. 同样的，你也可以验证这个类型的值（不同的函数）是否确实是$A^B$个. </li>
+<li><strong>幂</strong>：对应函数类型<code>A -&gt; B</code>. 同样的，你也可以验证这个类型的值（不同的函数）是否确实是$B^A$个. </li>
 <li><strong>0</strong>：是的，我们还需要有0. 你可以猜到的，这是个底下没有值的类型. 称为空类型bottom$\bot$. </li>
 </ul>
 <h2 id="类型范畴"><a href="#类型范畴" class="headerlink" title="类型范畴"></a>类型范畴</h2><p>这些构造在范畴论中有着一一对应的概念：类型作为对象，类型之间的函数作为态射构成一个范畴. </p>
@@ -335,9 +336,9 @@
 <p>别害怕！所谓范畴其实就是一堆随便什么东西（称为对象），它们之间有互相指来指去的箭头（称为态射）. 当然，这些箭头有一些好的性质，不喜欢看的可以跳过：</p>
 <ul>
 <li>每个对象都有个到自己的箭头$id$</li>
-<li>收尾相连的两个箭头可以组合成一个新箭头，例如如果有箭头$f:A\to B$，$g:B\to C$，可以组合成新的从$A$到$C$的箭头$g\circ f:A\to C$.</li>
+<li>首尾相连的两个箭头可以组合成一个新箭头，例如如果有箭头$f:A\to B$，$g:B\to C$，可以组合成新的从$A$到$C$的箭头$g\circ f:A\to C$.</li>
 <li>$id$箭头复合上别的箭头都等于那个箭头，就是说$id \circ f=f\circ id=f$.</li>
-<li>复合运算有结合律$h\circ(g\circ f)=(h\circ g)\circ f$._</li>
+<li>复合运算有结合律$h\circ(g\circ f)=(h\circ g)\circ f$.</li>
 </ul>
 <p>每个类型都有自己到自己的恒等函数，而复合则是函数的复合. 可以验证它确实是一个范畴.</p>
 </blockquote>
@@ -369,14 +370,11 @@
 <td>函数对象</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p>有上述结构的范畴称为笛卡尔闭范畴（CCC），类型范畴就是一个例子.</p>
-</blockquote>
 <h1 id="那递归类型呢？"><a href="#那递归类型呢？" class="headerlink" title="那递归类型呢？"></a>那递归类型呢？</h1><p>大多数时候我们说ADT都指的是可以递归的，也就是定义类型的时候可以包括自身. 最经典的递归类型例子是自然数. 例如在Haskell中我们可以定义自然数类型：</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nat</span> = <span class="type">Zero</span> | <span class="type">Succ</span> <span class="type">Nat</span></span></span><br></pre></td></tr></table></figure>
 
 <p>一个自然数要么是0要么是一个自然数的后继. 这个ADT的定义中<code>Nat = 1 + Nat</code>出现了它自身. 我们已经知道了什么是<code>1</code>、什么是<code>+</code>，可是这种递归的类型到底是什么意思呢？</p>
-<h2 id="函子的不动点"><a href="#函子的不动点" class="headerlink" title="函子的不动点"></a>函子的不动点</h2><p>仔细看<code>Nat</code>的定义可以发现，<code>Suc</code>的参数的类型就是它自身. 我们把这个自然数类型记作变量$X$，那么这个性质就可以写成：<br>$$<br>X=1+X<br>$$<br>而我们使用的<code>Nat</code>就是这个等式的（一个）解. 更进一步的，我们可以把右边定义为一个类型函数：<br>$$<br>F(X)=1+ X<br>$$<br>这样，我们的<code>IntList</code>就是这个函数的一个不动点$X=F(X)$.</p>
+<h2 id="函子的不动点"><a href="#函子的不动点" class="headerlink" title="函子的不动点"></a>函子的不动点</h2><p>仔细看<code>Nat</code>的定义可以发现，<code>Succ</code>的参数的类型就是它自身. 我们把这个自然数类型记作变量$X$，那么这个性质就可以写成：<br>$$<br>X=1+X<br>$$<br>而我们使用的<code>Nat</code>就是这个等式的（一个）解. 更进一步的，我们可以把右边定义为一个类型函数：<br>$$<br>F(X)=1+ X<br>$$<br>这样，我们的<code>Nat</code>就是这个函数的一个不动点$X=F(X)$.</p>
 <p>刚刚提到，类型构成一个范畴，我们刚刚引入的类型函数，其实可以看做是这个范畴上的一个自函子.</p>
 <blockquote>
 <p>别害怕！在类型范畴的语境下，一个（自）函子$F$的意思是：</p>
@@ -389,13 +387,15 @@
 </blockquote>
 <p>更一般地，对于其他的递归类型，我们也可以做类似的事情，把定义中递归的地方挖成一个空，这就对应着一个函子，而这个函子的不动点就是我们所说的递归类型了.</p>
 <blockquote>
-<p>等一下，你确定$F(X)=X\to \mathrm{Int}$也是函子吗？好吧，这个不行.</p>
+<p>等一下，你确定$F(X)=X\to \mathrm{Int}$也是函子吗？好吧，把ADT的任意一个地方挖成一个空不总是对应一个函子：例如在函数参数的位置，可以验证一下这确实无法满足函子的定义. </p>
+<p>事实上，Haskell确实支持定义这样的递归类型：例如<code>data X = X (X -&gt; Int)</code>. 这意味着至少Haskell里的递归类型不一定对应一个函子. 不过，有证据表明这种不能表示成函子的递归类型是很坏的，它们会引入无法停机的程序！</p>
+<p>相反的，当我们限制那些可以表示为函子的类型，在下文中我们看到我们甚至可以把它encode在system F里.</p>
 </blockquote>
 <h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>现在还有最后一个小细节，这里的类型之间的相等其实是刚刚提过的类型同构. 也就是说，当我们定义一个递归类型，其实我们想要的是：一个具体的类型$T$，它对于一个函子$F$（定义的右边部分），存在一对同构函数$T\to FT$和$FT\to T$. 例如，当我们在说自然数类型的时候，其实我们想要的是：</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个神秘的类型T</span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">T</span> = ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 它对于这个函子</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">NatF</span> a = <span class="type">Zero&#x27;</span> | <span class="type">Succ&#x27;</span> a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">to</span>   :: <span class="type">T</span> -&gt; <span class="type">NatF</span> <span class="type">T</span></span><br><span class="line"><span class="title">from</span> :: <span class="type">NatF</span> <span class="type">T</span> -&gt; <span class="type">T</span></span><br></pre></td></tr></table></figure>
 
 <p>当然，我们的Haskell中的定义就是符合这个定义的一个$T$：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个神秘的类型T = Nat</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nat</span> = <span class="type">Zero</span> | <span class="type">Succ</span> <span class="type">Nat</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 它对于这个函子\begin&#123;align&#125;</span></span><br><span class="line"><span class="title">a</span> &amp;= b + c \\</span><br><span class="line"><span class="title">d</span> &amp;= e + f</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">NatF</span> a = <span class="type">Zero&#x27;</span> | <span class="type">Succ&#x27;</span> a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">to</span>   :: <span class="type">Nat</span> -&gt; <span class="type">NatF</span> <span class="type">Nat</span></span><br><span class="line"><span class="title">to</span>   <span class="type">Zero</span>      = <span class="type">Zero&#x27;</span></span><br><span class="line"><span class="title">to</span>   (<span class="type">Succ</span> n)  = <span class="type">Succ&#x27;</span> n</span><br><span class="line"><span class="title">from</span> :: <span class="type">NatF</span> <span class="type">Nat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">from</span> <span class="type">Zero&#x27;</span>     = <span class="type">Zero</span></span><br><span class="line"><span class="title">from</span> (<span class="type">Succ&#x27;</span> n) = <span class="type">Succ</span> n</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个神秘的类型T = Nat</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nat</span> = <span class="type">Zero</span> | <span class="type">Succ</span> <span class="type">Nat</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 它对于这个函子</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">NatF</span> a = <span class="type">Zero&#x27;</span> | <span class="type">Succ&#x27;</span> a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">to</span>   :: <span class="type">Nat</span> -&gt; <span class="type">NatF</span> <span class="type">Nat</span></span><br><span class="line"><span class="title">to</span>   <span class="type">Zero</span>      = <span class="type">Zero&#x27;</span></span><br><span class="line"><span class="title">to</span>   (<span class="type">Succ</span> n)  = <span class="type">Succ&#x27;</span> n</span><br><span class="line"><span class="title">from</span> :: <span class="type">NatF</span> <span class="type">Nat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">from</span> <span class="type">Zero&#x27;</span>     = <span class="type">Zero</span></span><br><span class="line"><span class="title">from</span> (<span class="type">Succ&#x27;</span> n) = <span class="type">Succ</span> n</span><br></pre></td></tr></table></figure>
 
 <p>我们很轻易就可以看出这确实是一对同构函数. 不过我们可以稍微再仔细看看这里到底发生了什么. </p>
 <p>首先<code>NatF Nat</code>这个类型是什么呢？我们展开它的定义：</p>
@@ -485,20 +485,36 @@
 <p>反过来说，对于$T$类型的每一个不同的值$t_1$，$t_2$，总存在某个$\mathrm{fold}_X(f)$使得应用上它们会得到不同的值$\mathrm{fold}_X(f)(t_1)\not= \mathrm{fold}_X(f)(t_2)$.</p>
 <p>对于每一个$t:T$，我们可以把它对于任意的$\mathrm{fold}$的作用结果用一个函数表示：<br>$$<br>\Phi:T \to (\forall X. (F\ X\to X) \to X)\\<br>\Phi = \lambda t.\Lambda X. \lambda f: F\ X\to X. \mathrm{fold}_X\ f\ t<br>$$<br>我们刚刚的结论，确保了这个函数是个单射（对不同的$t$，得到的那个函数总是不同的）. 接下来我们只需要证明它还是个满射，我们就能愉快地得到$T \simeq \forall X. (F\ X\to X) \to X$了.</p>
 <p>满射，也就是说对于任意$g:\forall X. (F\ X\to X) \to X$，都有$t:T$使得$\Phi(t)=g$. </p>
-<p>首先我们取初始代数作为参数是可以得到$g\ T\ \mathrm{in}:T$的. 接下来要证明$\Phi(g\ T\ \mathrm{in})=g$成立.</p>
-<p>我们左侧展开定义，右侧$\eta$-展开，即证：<br>$$<br>\Lambda X. \lambda f: F\ X\to X. \mathrm{fold}_X\ f\ (g\ T\ \mathrm{in})=\Lambda X. \lambda f: F\ X\to X.g\ X\ f<br>$$<br>遗憾的是这个结论在范畴论框架下并不好证，Wadler告诉我们这需要结合system F的parametricity才能得到.</p>
+<p>首先我们取初始代数作为参数是可以得到$g_T\ \mathrm{in}:T$的. 接下来要证明$\Phi(g_T\ \mathrm{in})=g$成立.</p>
+<p>我们左侧展开定义，右侧$\eta$-展开，即证：<br>$$<br>\Lambda X. \lambda f: F\ X\to X. \mathrm{fold}_X\ f\ (g_T\ \mathrm{in})=\Lambda X. \lambda f: F\ X\to X.g_X\ f<br>$$<br>遗憾的是这个结论在范畴论框架下并不好证，Wadler告诉我们这需要结合system F的parametricity才能得到.</p>
+<p>根据parametricity，由$g$的类型，我们可以得到对应的free theorem：</p>
+<ul>
+<li>对任意函数$a:A \to A’$，都有<ul>
+<li>对任意$f:FA \to A$，$f’:FA’ \to A’$，如果$\forall x,x’.\ F\ a\ x=x’ \Rightarrow a\ (f\ x)=f’\ x’$</li>
+<li>则有$a\ (g_A\ f)=g_{A’}\ f’$成立.</li>
+</ul>
+</li>
+</ul>
+<p>所以我们可以取$a=\mathrm{fold}_X\ f:T\to X$，$f = \mathrm{in}$，$f’=f$. 这样前提就变成了：</p>
+<ul>
+<li>$\forall x,x’.\ F\ (\mathrm{fold_X}\ f)\ x=x’ \Rightarrow \mathrm{fold_X}\ f\ (\mathrm{in}\ x)=f\ x’$</li>
+</ul>
+<p>这个式子画成交换图的话就是：</p>
+<p><img src="2.png" alt="2.png"></p>
+<p>是不是很眼熟，这就是我们的同态条件，这个显然已经满足了. 于是我们把它们都代进去，就愉快地得到了结论：<br>$$<br>\mathrm{fold}_X\ f\ (g_T\ \mathrm{in})=g_{X}\ f<br>$$<br>至此我们就证明完毕了，$T \simeq \forall X. (F\ X\to X) \to X$. 也就是说，$\forall X. (F\ X\to X) \to X$就是我们想要的$F$的最小不动点，我们可以把它当做我们的递归类型来使用！</p>
 <blockquote>
 <p>如果没有parametricity的话，这个encoding就不是初始F代数.</p>
 </blockquote>
-<h2 id="免费的递归类型！"><a href="#免费的递归类型！" class="headerlink" title="免费的递归类型！"></a>免费的递归类型！</h2><p>在一番推导后，我们终于重新发明了递归类型. 还是以自然数为例，现在我们可以给出它们的完整定义了：</p>
+<h2 id="免费的递归类型！"><a href="#免费的递归类型！" class="headerlink" title="免费的递归类型！"></a>免费的递归类型！</h2><p>在一番推导后，我们终于重新发明了递归类型. 现在我们来验证一下吧. 还是以自然数为例，现在我们可以给出它们的完整定义了：</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 一个神秘的类型T = forall a. (NatF a -&gt; a) -&gt; a</span></span><br><span class="line"><span class="class"><span class="keyword">type</span> <span class="type">MyNat</span> = forall a. (<span class="type">NatF</span> <span class="title">a</span> -&gt; <span class="title">a</span>) -&gt; a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 它对于这个函子</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">NatF</span> a = <span class="type">Zero&#x27;</span> | <span class="type">Succ&#x27;</span> a <span class="keyword">deriving</span> <span class="type">Functor</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 是它的初始代数</span></span><br><span class="line"><span class="title">foldMyNat</span> :: (<span class="type">NatF</span> a -&gt; a) -&gt; <span class="type">MyNat</span> -&gt; a</span><br><span class="line"><span class="title">foldMyNat</span> k t = t k</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">to&#x27;</span>   :: <span class="type">MyNat</span> -&gt; <span class="type">NatF</span> <span class="type">MyNat</span></span><br><span class="line"><span class="title">to&#x27;</span>   = foldMyNat (fmap from&#x27;)</span><br><span class="line"><span class="title">from&#x27;</span> :: <span class="type">NatF</span> <span class="type">MyNat</span> -&gt; <span class="type">MyNat</span></span><br><span class="line"><span class="title">from&#x27;</span> s k = k (fmap (foldMyNat k) s)</span><br></pre></td></tr></table></figure>
 
 <p>我们可以验证一下它和我们正常定义的自然数类型是不是同构的：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nat</span> = <span class="type">Zero</span> | <span class="type">Succ</span> <span class="type">Nat</span></span></span><br><span class="line"><span class="title">to</span>   :: <span class="type">Nat</span> -&gt; <span class="type">NatF</span> <span class="type">Nat</span></span><br><span class="line"><span class="title">to</span>   <span class="type">Zero</span>      = <span class="type">Zero&#x27;</span></span><br><span class="line"><span class="title">to</span>   (<span class="type">Succ</span> n)  = <span class="type">Succ&#x27;</span> n</span><br><span class="line"><span class="title">from</span> :: <span class="type">NatF</span> <span class="type">Nat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">from</span> <span class="type">Zero&#x27;</span>     = <span class="type">Zero</span></span><br><span class="line"><span class="title">from</span> (<span class="type">Succ&#x27;</span> n) = <span class="type">Succ</span> n</span><br><span class="line"></span><br><span class="line"><span class="title">foldNat</span> :: (<span class="type">NatF</span> a -&gt; a) -&gt; <span class="type">Nat</span> -&gt; a</span><br><span class="line"><span class="title">foldNat</span> f <span class="type">Zero</span> = f <span class="type">Zero&#x27;</span> </span><br><span class="line"><span class="title">foldNat</span> f (<span class="type">Succ</span> n) = f (<span class="type">Succ&#x27;</span> (foldNat f n))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">toNat</span>   :: <span class="type">MyNat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">toNat</span>   = foldMyNat from</span><br><span class="line"><span class="title">fromNat</span> :: <span class="type">Nat</span> -&gt; <span class="type">MyNat</span></span><br><span class="line"><span class="title">fromNat</span> = foldNat from&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Nat</span> = <span class="type">Zero</span> | <span class="type">Succ</span> <span class="type">Nat</span></span></span><br><span class="line"><span class="title">to</span>   :: <span class="type">Nat</span> -&gt; <span class="type">NatF</span> <span class="type">Nat</span></span><br><span class="line"><span class="title">to</span>   <span class="type">Zero</span>      = <span class="type">Zero&#x27;</span></span><br><span class="line"><span class="title">to</span>   (<span class="type">Succ</span> n)  = <span class="type">Succ&#x27;</span> n</span><br><span class="line"><span class="title">from</span> :: <span class="type">NatF</span> <span class="type">Nat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">from</span> <span class="type">Zero&#x27;</span>     = <span class="type">Zero</span></span><br><span class="line"><span class="title">from</span> (<span class="type">Succ&#x27;</span> n) = <span class="type">Succ</span> n</span><br><span class="line"></span><br><span class="line"><span class="title">foldNat</span> :: (<span class="type">NatF</span> a -&gt; a) -&gt; <span class="type">Nat</span> -&gt; a</span><br><span class="line"><span class="title">foldNat</span> f <span class="type">Zero</span> = f <span class="type">Zero&#x27;</span> </span><br><span class="line"><span class="title">foldNat</span> f (<span class="type">Succ</span> n) = f (<span class="type">Succ&#x27;</span> (foldNat f n))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 存在一对同构映射</span></span><br><span class="line"><span class="title">toNat</span>   :: <span class="type">MyNat</span> -&gt; <span class="type">Nat</span></span><br><span class="line"><span class="title">toNat</span>   = foldMyNat from</span><br><span class="line"><span class="title">fromNat</span> :: <span class="type">Nat</span> -&gt; <span class="type">MyNat</span></span><br><span class="line"><span class="title">fromNat</span> = foldNat from&#x27;，重新发明了递归类型</span><br></pre></td></tr></table></figure>
 
 <p>太好了，我们成功发明了递归类型！</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回顾一下：我们首先介绍了类型之间的运算是什么，类型同构作为类型之间的等价关系. 然后我们通过把递归类型表示为成一个类型范畴上的自函子$F$的一个不动点. 接着我们引入了F代数的概念，并发现这个不动点对应着F代数范畴中的初始F代数. 由此，我们进一步发现了递归类型的另一种实现方法，重新发明了递归类型. </p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt">Philip Wadler, Recursive types for free!</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回顾一下：我们首先介绍了类型之间的运算是什么，类型同构作为类型之间的等价关系. 然后我们通过把递归类型表示为成一个类型范畴上的自函子$F$的一个不动点. 接着我们引入了F代数的概念，并发现这个不动点对应着F代数范畴中的初始F代数. 由此，我们进一步在System F中找到了这个类型，发现了递归类型的另一种实现方法. </p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] Philip Wadler, “Recursive types for free!”, 1990. <a href="https://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt">https://homepages.inf.ed.ac.uk/wadler/papers/free-rectypes/free-rectypes.txt</a></p>
+<p>[2] Philip Wadler, “Theorems for Free!”, 1989. <a href="https://dl.acm.org/doi/pdf/10.1145/99370.99404">https://dl.acm.org/doi/pdf/10.1145/99370.99404</a></p>
 
     
 

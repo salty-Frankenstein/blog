@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。">
+  <meta name="description" content="来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为Bootstrapping a Programming Language from Nothing的Seminar。本文的内容为基于此材料的个人理解。  在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【笔记】从零开始手搓编程语言（二）">
 <meta property="og:url" content="https://salty-frankenstein.github.io/2025/11/18/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="地灵殿">
-<meta property="og:description" content="在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。">
+<meta property="og:description" content="来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为Bootstrapping a Programming Language from Nothing的Seminar。本文的内容为基于此材料的个人理解。  在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。 接">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-18T04:34:54.000Z">
-<meta property="article:modified_time" content="2025-11-26T06:28:04.892Z">
+<meta property="article:modified_time" content="2025-12-09T15:33:23.581Z">
 <meta property="article:author" content="Frankenstein">
 <meta property="article:tag" content="实现">
 <meta property="article:tag" content="教程">
@@ -289,7 +289,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。</p>
+    <p>来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为<a href="https://gitlab.liu.se/filst04/bootstrap">Bootstrapping a Programming Language from Nothing</a>的Seminar。本文的内容为基于此材料的个人理解。</p>
+<hr>
+<p>在上一篇中我们手撸了一个十六进制编码器，可以支持解析文本文件，自动小端序输出，支持写注释。现在，至少我们不用一个个数的敲机器码了。</p>
 <p>接下来要解决的是另一个反人类的事情：手动链接。在写上次的程序时，我们需要把每个跳转指令的目标地址一个个的掰手指数出来，这很麻烦。更麻烦的是，当你想修改程序导致字节数变化之后，这些地址都会变，完了要重新数重新填。于是，这次我们来解决这个问题，摆脱手动链接。</p>
 <span id="more"></span>
 
@@ -386,7 +388,7 @@
         <li>
           <strong>版权声明： </strong>
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+          <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> 本博客文章采用 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> 协议进行许可。转载请注明作者与原文链接。
         </li>
         
       </ul>

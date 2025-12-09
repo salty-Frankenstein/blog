@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我们还要操心一下ELF文件头的填写和机器码的翻译，不过和之前相比已经好很多了）。下一步我们可以选择做一个真的汇编器，不过这同样困难且枯燥，而且对我们的开发体验提升不大。我是说，如果我们能现在就实现一个语义更高级的语言，我们为什么还需要汇编呢？不过，这真的能做到吗？">
+  <meta name="description" content="来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为Bootstrapping a Programming Language from Nothing的Seminar。本文的内容为基于此材料的个人理解。  经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【笔记】从零开始手搓编程语言（三）">
 <meta property="og:url" content="https://salty-frankenstein.github.io/2025/11/27/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%89%8B%E6%90%93%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="地灵殿">
-<meta property="og:description" content="经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我们还要操心一下ELF文件头的填写和机器码的翻译，不过和之前相比已经好很多了）。下一步我们可以选择做一个真的汇编器，不过这同样困难且枯燥，而且对我们的开发体验提升不大。我是说，如果我们能现在就实现一个语义更高级的语言，我们为什么还需要汇编呢？不过，这真的能做到吗？">
+<meta property="og:description" content="来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为Bootstrapping a Programming Language from Nothing的Seminar。本文的内容为基于此材料的个人理解。  经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-26T15:36:52.000Z">
-<meta property="article:modified_time" content="2025-11-26T17:54:41.069Z">
+<meta property="article:modified_time" content="2025-12-09T15:33:30.502Z">
 <meta property="article:author" content="Frankenstein">
 <meta property="article:tag" content="实现">
 <meta property="article:tag" content="教程">
@@ -269,7 +269,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.4k字</span>
+      <span class="post-count">4k字</span>
     </span>
   </span>
 
@@ -278,7 +278,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">15分</span>
     </span>
   </span>
 </div>
@@ -289,7 +289,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我们还要操心一下ELF文件头的填写和机器码的翻译，不过和之前相比已经好很多了）。下一步我们可以选择做一个真的汇编器，不过这同样困难且枯燥，而且对我们的开发体验提升不大。我是说，如果我们能现在就实现一个语义更高级的语言，我们为什么还需要汇编呢？不过，这真的能做到吗？</p>
+    <p>来自瑞典Linköping University的Filip Strömbäck老师来我们组访问，进行的一个名为<a href="https://gitlab.liu.se/filst04/bootstrap">Bootstrapping a Programming Language from Nothing</a>的Seminar。本文的内容为基于此材料的个人理解。</p>
+<hr>
+<p>经过前两周的奋战，我们终于摆脱了手写二进制、手动数字节的地狱。使用上次开发的工具我们已经可以像编写汇编代码一样比较舒适地开发了（尽管我们还要操心一下ELF文件头的填写和机器码的翻译，不过和之前相比已经好很多了）。下一步我们可以选择做一个真的汇编器，不过这同样困难且枯燥，而且对我们的开发体验提升不大。我是说，如果我们能现在就实现一个语义更高级的语言，我们为什么还需要汇编呢？不过，这真的能做到吗？</p>
 <span id="more"></span>
 
 <h1 id="Week-3-Core-Forth"><a href="#Week-3-Core-Forth" class="headerlink" title="Week 3: Core Forth"></a>Week 3: Core Forth</h1><p>能的！不过在此之前我们需要谨慎设计我们要实现的语言，毕竟我们在前两周已经体验过手搓机器码的痛苦了：</p>
@@ -328,7 +330,7 @@
 <p><code>swap</code>会交换栈顶两个数的顺序：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 3 swap</span><br><span class="line">( 1 3 2 )</span><br></pre></td></tr></table></figure>
 
-<h2 id="word"><a href="#word" class="headerlink" title="word"></a>word</h2><p>其实，在Forth中我们只有word这一种构造。Forth程序就是用空格分开的数字和word序列，遇到数字就push进栈、一个个依次执行。不过慢慢我们会发现，它真的很强大！</p>
+<h3 id="Word"><a href="#Word" class="headerlink" title="Word"></a>Word</h3><p>其实，在Forth中我们只有word这一种构造。Forth程序就是用空格分开的数字和word序列，遇到数字就push进栈、一个个依次执行。不过慢慢我们会发现，它真的很强大！</p>
 <p>例如算数运算<code>+</code>是一个word，它移除栈顶两个数，push进它们的和（是的你发现了，写法和逆波兰式一模一样呢）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 +</span><br><span class="line">( 3 )</span><br></pre></td></tr></table></figure>
 
@@ -341,19 +343,173 @@
 
 <p>以<code>:</code>开始后面跟的是新定义的word的名字，然后跟着它的实现。我们就实现了一个简单的+2函数。</p>
 <blockquote>
-<p>这不是我们柯里化的梗吗（）</p>
+<p>这不是我们柯里化的梗吗（</p>
 </blockquote>
 <p>我们发现这个<code>add-two</code>的功能和把它替换成它的body的<code>2 +</code>的结果是完全一样的。是的，定义一个word的语义仅仅是把它的定义展开即可，就像<em>宏</em>一样。</p>
 <blockquote>
-<p>这不是我们引用透明的梗吗（）</p>
+<p>这不是我们引用透明的梗吗（</p>
 </blockquote>
-<h3 id="代码即数据"><a href="#代码即数据" class="headerlink" title="代码即数据"></a>代码即数据</h3><p>我们设计Forth的解释器是一个个word被输入、处理的，它们既是代码又是数据。这意味着前面执行的word可以以后面的word为数据，从而达到改变后续代码语义的效果！</p>
+<h3 id="代码即数据"><a href="#代码即数据" class="headerlink" title="代码即数据"></a>代码即数据</h3><p>我们设计Forth的解释器是一个个word被输入、处理的，word的所有参数通过栈来传递，这使得编译一段Forth代码变得很简单，例如我们想实现上面<code>add-two</code>代码的编译过程：</p>
+<ul>
+<li>数字<code>2</code>：<code>push</code>对应的数字入栈。</li>
+<li><code>+</code>: 查表、<code>call</code>对应的子程序即可</li>
+</ul>
+<p>需要注意的是，不论是代码还是数据，都是从同一个输入流中读入的，这意味着代码即是数据。随后我们会发现，这意味着前面执行的word可以以后面的word为数据，从而达到改变后续代码语义的效果！</p>
 <h3 id="元编程"><a href="#元编程" class="headerlink" title="元编程"></a>元编程</h3><p>注释一般认为是在编程语言语义之外的东西。然而在Forth中，一切皆word，包括注释！我们用括号来表示注释，其实<code>(</code>也是普通的word。那么它们是怎么实现的呢？</p>
-<p>大概思路是<code>(</code>会一直读（消耗）输入直到读到<code>)</code>，这样等它结束时，当中的所有内容都被忽略了。看起来不错。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">: ( </span><br><span class="line">  read-until-(</span><br><span class="line">; </span><br></pre></td></tr></table></figure>
+
+<p>其中<code>read-until-(</code>是一个一直消耗输入直到遇到<code>)</code>的word。大概思路是<code>(</code>会一直读（消耗）输入直到读到<code>)</code>，这样等它结束时，当中的所有内容都被忽略了。看起来不错。</p>
 <p>不过有个小问题，就是在定义word的时候，我们也希望能用注释：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: add-two ( a -- a+2 ) 2 + ;</span><br></pre></td></tr></table></figure>
 
-<p>这就有问题了：定义word体的时候</p>
+<p>这就有问题了：我们观察这个word的编译过程会发现，在遇到<code>(</code>这个word时，如果我们直接生成它的代码（一句<code>call XXX</code>），然后会继续编译下一个叫<code>a</code>的word……这并不是我们想要的行为。</p>
+<p>引起这个问题的原因是，我们其实想<code>(</code>这个word在<strong>编译时</strong> <em>运行</em>，而不是直接编译成代码在<strong>运行时</strong> <em>运行</em>。为了解决这个问题，Forth提供称为<code>immediate</code>（立即）的机制，我们可以在定义word的时候声明它为立即的，这样的word将在<strong>编译时</strong>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">: ( </span><br><span class="line">  read-until-(</span><br><span class="line">; immediate</span><br></pre></td></tr></table></figure>
+
+<p>这样，哪怕<code>(</code>出现在定义中（编译代码的地方），它也会被直接执行，而不是生成对应的代码。</p>
+<p>我们很快会发现这是个很强的特性：这意味着我们可以在<strong>编译时执行任意代码</strong>！例如，我们可以实现操作控制流的word<code>return</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">: return</span><br><span class="line">  0xC3 emit-byte</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>emit-byte</code>是在生成代码的指针处输出一个字节的数据，于是，当编译到这里的时候，<code>return</code>会在编译的机器码处插入一个<code>0xC3</code>，也就是<code>ret</code>指令。虽然有点耍赖，但是这确实可以实现我们的需求。</p>
+<p>同样的，还可以实现更复杂但使用的分支结构<code>if</code>、<code>else</code>、<code>fi</code>：<code>if</code>读栈顶的数，不为零则执行后面的word且跳过<code>else</code>到<code>fi</code>，为零则执行<code>else</code>后面的。不过，这些具体的实现会在下一篇再介绍。</p>
+<p>最后，定义word的<code>:</code>其实也可以作为一个word来定义，只需要配合<code>;</code>作为一个结束的信号即可。<code>;</code>要在编译时工作，因此是个<code>immediate</code>，这也是为什么要设计一个和开始定义不一样的符号。<code>;</code>做的事情很简单：插入一个<code>ret</code>指令，并告诉<code>:</code>结束编译即可。嗯，好像有点问题，<code>:</code>要怎么知道编译结束的呢？</p>
+<h3 id="简单的接口"><a href="#简单的接口" class="headerlink" title="简单的接口"></a>简单的接口</h3><p>在第一个<code>(</code>的例子中，它是编译、运行都运行的“两栖”word，而<code>;</code>则不太一样：一方面，<code>;</code>这个word只在编译时工作（用来结束编译），在运行时我们不希望它工作，这意味着<code>;</code>需要知道自己在运行时还是编译时；另一方面，<code>;</code>需要告诉解释器编译已经完成这个消息。</p>
+<p>我们似乎需要一个解释器与<code>immediate</code>word之间的接口来完成这个需求。</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>此immediate word处于运行时</td>
+<td>正常继续</td>
+</tr>
+<tr>
+<td>1</td>
+<td>此immediate word处于编译时</td>
+<td>正常继续</td>
+</tr>
+<tr>
+<td>2</td>
+<td>此immediate word处于编译时，最后的指令是call</td>
+<td>正常继续，最后的指令是call</td>
+</tr>
+<tr>
+<td>3</td>
+<td>不会发生</td>
+<td>停止编译，保留这个word</td>
+</tr>
+<tr>
+<td>4</td>
+<td>不会发生</td>
+<td>停止编译，不保留这个word</td>
+</tr>
+</tbody></table>
+<p>其中，<code>Input</code>是由解释器（运行时）或<code>:</code>（编译时）提供给每个immediate word的来表明身份，而<code>Output</code>是immediate word返回给对应环境的。对于解释器，直接忽略这个输出即可，而<code>:</code>则可以根据这个结果判断是继续编译还是停止。</p>
+<p><code>2</code>这个值代表的比较特殊，它可以帮我们更简单地完成尾递归消除优化。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>看起来不错，那该如何实现这样一个语言的解释器呢？</p>
+<ul>
+<li><p>首先，我们需要一个栈</p>
+</li>
+<li><p>我们应该有一个所有word的表，开始运行的时候内容是所有的built-in的word，因为在代码中也可以定义word，所以这个表应该要可以追加项目</p>
+</li>
+<li><p>我们要实现这些built-in的word</p>
+</li>
+<li><p>最后，我们需要一个REPL（read-evaluate-print-loop）循环，它每次读一个字符串，然后执行对应的操作</p>
+<ul>
+<li>读到数字，就把它push到栈上</li>
+<li>不是数字的话就是word，查找并执行对应的word</li>
+<li>如果没找到的话，就输出错误</li>
+</ul>
+<p>然后进行下一次循环</p>
+</li>
+</ul>
+<p>差不多了。不过，毕竟我们还是要从机器码写起，现在我们一个个来看这些部分如何实现：</p>
+<h3 id="栈-1"><a href="#栈-1" class="headerlink" title="栈"></a>栈</h3><p>首先，我们要留一个内存空间给栈，例如从<code>0x300000</code>到<code>0x400000</code>，应该够用了。我们把它单独分一个段，这样在栈溢出或者写错地址的时候会直接段错误而不是带着bug跑，这对于debug很有用。我们和x86栈的惯例一样，从高地址到低地址使用。最后，我们还需要留一个寄存器专门做栈顶指针，为了不和x86栈的<code>esp</code>打架，我们用<code>edi</code>。</p>
+<h3 id="Word表"><a href="#Word表" class="headerlink" title="Word表"></a>Word表</h3><p>我们需要一个数据结构存放所有的word，需要包括的是：</p>
+<ul>
+<li>word的名字</li>
+<li>word对应的代码</li>
+<li>是不是immediate</li>
+<li>最后，这是个链表，所以我们还需要一个指向上一个条目的指针</li>
+</ul>
+<p>每个word都被编译/实现成一个合法的函数，这样我们之间用<code>call</code>就可以执行对应的word了。我们的内存布局如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00         ; 1字节：0-普通word 1-immediate word</span><br><span class="line">&quot;dup&quot;      ; word名，一个以&#x27;\0&#x27;为结尾的字符串</span><br><span class="line">XXXXXXXX   ; 4字节：指向上一条目 第一条指令处 的指针，第一个word这个地址为0</span><br><span class="line">8B 07 ...  ; 从这里开始是这个word的代码</span><br></pre></td></tr></table></figure>
+
+<p>这个精心设计的布局有很多好处：</p>
+<ul>
+<li>首先，我们默认指向每个word条目对应的<strong>第一条指令的地址</strong>，这样在我们的解释器执行word时，只需要按照链表找到对应的word，<code>call</code>过去就可以了。</li>
+<li>word的指针-4就可以拿到上一个word的地址，我们可以这样遍历这个链表。</li>
+<li>表示这个word的immediate信息的字节在最前面，是为了做word名字符串另一个方向的终结符（因为<code>0</code>和<code>1</code>都不是合法的字符），word的名字是不定长的，这样我们就可以从后面开始一路找到字符串的开头了。</li>
+</ul>
+<p>因为我们要直接<code>call</code>这个数据结构，所以我们需要把这个段设置成可执行的。不过一个更方便的办法是直接把它放在我们的主程序代码段的后面，因为这个表只会往高地址一个方向生长，所以这样就足够了。我们把built-in的word就这样一个个手写进这个链表，而我们的代码段时可读写的，所以运行时定义的word也可以往后接着追加。这样，我们代码段的结构大概长这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">E8 -repl  ;; call repl</span><br><span class="line"></span><br><span class="line">;; call exit</span><br><span class="line">C7 C0 00000001  ;; mov eax, 1       ; syscall: exit</span><br><span class="line">C7 C3 00000000  ;; mov ebx, 0       ; status: 0</span><br><span class="line">CD 80           ;; int 0x80         ; make syscall</span><br><span class="line"></span><br><span class="line">;; 主程序结束了，下面的空间是word表</span><br><span class="line">;; 这是第一个word</span><br><span class="line">00 &quot;dup&quot; 00</span><br><span class="line">00000000 ;; pointer to previous word</span><br><span class="line">:dup</span><br><span class="line">8B 07           ;; mov eax, [edi]  ; get the top of stack</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>为了追加条目，我们还需要两个全局变量：<code>FREE</code>指向这个表第一个空的（可以写入的）字节，<code>HEAD</code>指向当前最后一个word。</p>
+<h3 id="Built-in-Word"><a href="#Built-in-Word" class="headerlink" title="Built-in Word"></a>Built-in Word</h3><p>下一个重要的问题是：我们到底需要提供多少内置的word？你发现了，其实如果我们有一个<code>emit-byte</code>可以在<code>FREE</code>的地方写一个字节然后更新<code>FREE</code>，一个可以更改<code>HEAD</code>的word，我们似乎就已经可以用这个语言<strong>手写机器码</strong>手动注册这个word表来定义任何的word了。</p>
+<p>是的，这个语言的core可以很小很小，然后我们可以用手写这个很小的语言的解释器，然后接下来就用这个语言自己写自己了！唯一的问题是，这样在“这个语言里手写机器码”来完成剩下的启动流程，还不如直接在源码里面写呢……</p>
+<p>这个故事告诉我们，或许最小化core未必是个好主意，我们需要做一些权衡：我们要选择一些最重要的word内置在解释器里，它们实现简单，但可以简化我们下一步的启动流程——我们最好按照重要性排序，实现那些最重要的word，把那些没那么重要的放在这个语言里自己进一步实现（作为标准库）。</p>
+<p>以下是我在这一阶段实现的word：</p>
+<p>Stack Manipulation</p>
+<ul>
+<li><code>dup</code>: <code>( n -- n n )</code></li>
+<li><code>drop</code>: <code>( n -- )</code></li>
+<li><code>swap</code>: <code>( n1 n2 -- n2 n1 )</code></li>
+</ul>
+<p>Memory Access</p>
+<ul>
+<li><code>@</code>: <code>( addr -- value )</code> read address</li>
+<li><code>!</code>: <code>( addr value -- )</code> write address</li>
+<li><code>@b</code>: <code>( addr -- byte )</code> read byte</li>
+<li><code>!b</code>: <code>( addr byte -- )</code> write byte</li>
+</ul>
+<p>Input/Output</p>
+<ul>
+<li><code>get-char</code>: <code>( -- char )</code> read a char from input stream</li>
+<li><code>put-char</code>: <code>( char -- )</code> write a char to output stream</li>
+<li><code>put-string</code>: <code>( string -- )</code> write a string to output stream</li>
+</ul>
+<p>String Manipulation</p>
+<ul>
+<li><code>read</code>: <code>( -- string )</code> read a line from input stream into the string buffer</li>
+<li><code>string==</code>: <code>( string1 string2 -- flag )</code> compare two strings, return 1 if equal, 0 if not equal</li>
+<li><code>parse-number</code>: <code>( string -- number ok )</code> parse a number from string, support decimal and hexadecimal (prefix 0x). Return the number and <code>ok=1</code> if successful, <code>ok=0</code> if not a number.</li>
+<li><code>parse-digit</code>: <code>( char -- digit )</code> parse a digit, return -1 if not a digit</li>
+<li><code>string-copy</code>: <code>( src dest -- len )</code> copy a string from <code>src</code> to <code>dest</code>, return its length, null terminator included.</li>
+</ul>
+<p>Interpreter Functionality</p>
+<ul>
+<li><code>find-word</code>: <code>( string -- wordptr immediate )</code> find a word by its name, return the pointer to the word and immediate flag, if not found, return <code>0 0</code>.</li>
+<li><code>word-name</code>: <code>( wordptr -- string )</code> get the name of a word</li>
+<li><code>execute</code>: <code>( wordptr -- )</code> execute a word by its pointer</li>
+<li><code>read-eval-print</code>: <code>( -- )</code> the REPL loop, return when EOF</li>
+</ul>
+<p>Code Generation</p>
+<ul>
+<li><code>:</code>: <code>( -- )</code> start a new word definition</li>
+<li><code>;</code>: <code>( -- )</code> end a word definition</li>
+<li><code>immediate</code>: <code>( -- )</code> make the current word immediate</li>
+<li><code>emit-byte</code>: <code>( byte -- )</code> emit a byte to free text space</li>
+<li><code>emit-word</code>: <code>( word -- )</code> emit a 4-byte word to free text space</li>
+<li><code>emit-offset</code>: <code>( offset -- )</code> emit a 4-byte offset to free text space</li>
+<li><code>emit-string</code>: <code>( string -- )</code> emit a string to free text space</li>
+</ul>
+<p>Information</p>
+<ul>
+<li><code>head@</code>: <code>( -- addr )</code> get the lastes defined word address</li>
+<li><code>free@</code>: <code>( -- addr )</code> get the free text space pointer</li>
+<li><code>old-esp@</code>: <code>( -- addr )</code> get the original esp<br><code>fd-in@</code>: <code>( -- fd )</code> get the input file descriptor</li>
+<li><code>fd-out@</code>: <code>( -- fd )</code> get the output file descriptor</li>
+<li><code>stack-min@</code>: <code>( -- addr )</code> get the minimum address of the forth stack</li>
+<li><code>stack-size</code>: <code>( -- size )</code> get the size of the forth stack</li>
+<li><code>stack-curr@</code>: <code>( -- addr )</code> get the current top address of the forth stack</li>
+</ul>
+<p>还挺多的。其中<code>repl</code>也被实现成了一个word。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>经过前面的努力，我们已经得到了一个比较好用的写机器码的工具，所以没有邪道了。把这些都实现之后，我们就得到了一个可以用的forth解释器。接下来我们就可以用它在forth中完成剩下的部分了。</p>
 
     
 
@@ -374,7 +530,7 @@
         <li>
           <strong>版权声明： </strong>
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+          <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a> 本博客文章采用 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> 协议进行许可。转载请注明作者与原文链接。
         </li>
         
       </ul>
@@ -525,7 +681,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week-3-Core-Forth"><span class="toc-number">1.</span> <span class="toc-text">Week 3: Core Forth</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forth%E9%80%9F%E9%80%9A"><span class="toc-number">1.1.</span> <span class="toc-text">Forth速通</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#word"><span class="toc-number">1.2.</span> <span class="toc-text">word</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%8D%B3%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">代码即数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BC%96%E7%A8%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">元编程</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week-3-Core-Forth"><span class="toc-number">1.</span> <span class="toc-text">Week 3: Core Forth</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forth%E9%80%9F%E9%80%9A"><span class="toc-number">1.1.</span> <span class="toc-text">Forth速通</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word"><span class="toc-number">1.1.2.</span> <span class="toc-text">Word</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%8D%B3%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">代码即数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">元编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.1.5.</span> <span class="toc-text">简单的接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word%E8%A1%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">Word表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Built-in-Word"><span class="toc-number">1.2.3.</span> <span class="toc-text">Built-in Word</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">流程</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
